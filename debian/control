@@ -1,0 +1,13 @@
+Source: libplot-perl
+Section: math
+Priority: extra
+Maintainer: John Lapeyre <lapeyre@physics.arizona.edu>
+Standards-Version: 2.3.0.1
+
+Package: libplot-perl
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: perl interface to plot library
+ libplot is part of the plotutils package
+ from the FSF. This package allows the routines
+ to be called from perl.

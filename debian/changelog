@@ -1,0 +1,10 @@
+libplot-perl (2.1.6.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- John Lapeyre <lapeyre@physics.arizona.edu>  Tue, 27 Oct 1998 16:55:19 -0700
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "lapeyre@physics.arizona.edu"
+End:

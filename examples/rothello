@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+use Graphics::Libplot ':ALL';
+
+# type of plotting device
+$device = 'X';
+if (@ARGV) {
+    $device = $ARGV[0];	
+    die "Uknown device: $ARGV[0]" unless $ARGV[0] =~ /^ps|X|fig$/;
+}
+
+$handle =  $angle = 0;
+#       /* set Plotter parameters */
+parampl ("BITMAPSIZE", "300x300");
+parampl ("BG_COLOR", "blue"); # /* background color for window */
+parampl ("USE_DOUBLE_BUFFERING", "yes");
+
+$handle = newpl ($device, stdin, stdout, stderr);
+selectpl ($handle);
+
+openpl ();
+fspace (0.0, 0.0, 1.0, 1.0);  # /* use normalized coordinates */
+pencolorname ("white");
+ffontsize (0.2);
+fontname ("NewCenturySchlbk-Roman");
+
+fmove (.50,.50);  #            /* move to center */
+$x = 0;
+while ($x++ < 1000)          #           /* loop endlessly */
+{
+  erase ();
+  textangle($angle++);    #  /* set new rotation angle */
+  alabel(ord 'c', ord 'c', "Hello");  # /* draw a centered `A' */
+}
+closepl();                   # /* close Plotter */
+selectpl (0);                # /* select default Plotter */
+deletepl ($handle);         
+
+1; # OK

@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+use Graphics::Libplot ':ALL';
+
+# type of plotting device
+$device = 'X';
+if (@ARGV) {
+    $device = $ARGV[0];	
+    die "Uknown device: $ARGV[0]" unless $ARGV[0] =~ /^ps|X|fig$/;
+}
+
+$MAXORDER =12;
+sub  draw_c_curve 
+{
+    my($dx,$dy,$order) = @_;
+    if ($order >= $MAXORDER)
+    {fcontrel ($dx, $dy); }
+    else
+    {
+	draw_c_curve (0.5 * ($dx - $dy), 0.5 * ($dx + $dy), $order + 1);
+	draw_c_curve (0.5 * ($dx + $dy), 0.5 * ($dy - $dx), $order + 1);
+    }
+}
+
+$handle = newpl($device, stdin, stdout, stderr);
+ selectpl ($handle);
+ openpl ();
+ fspace (0.0, 0.0, 1000.0, 1000.0);
+ flinewidth (0.25);         
+ pencolorname ("red");      
+ erase ();                  
+ fmove (600.0, 300.0);      
+ draw_c_curve (0.0, 400.0, 0);
+ closepl () ;
+ selectpl (0);    
+ deletepl ($handle);
+
+1; #OK

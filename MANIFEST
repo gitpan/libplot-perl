@@ -1,0 +1,6 @@
+Changes
+MANIFEST
+Makefile.PL
+Libplot.pm
+Libplot.xs
+test.pl

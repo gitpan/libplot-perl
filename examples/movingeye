@@ -1,0 +1,50 @@
+#!/usr/bin/perl
+use Graphics::Libplot ':ALL';
+
+# type of plotting device
+$device = 'X';
+if (@ARGV) {
+    $device = $ARGV[0];	
+    die "Uknown device: $ARGV[0]" unless $ARGV[0] =~ /^X$/;
+}
+
+
+parampl ("VANISH_ON_DELETE", "yes");
+parampl ("USE_DOUBLE_BUFFERING", "yes");
+     
+if (($handle = newpl ($device, stdin, stdout, stderr)) < 0)
+         {
+           die "Couldn't create Plotter";
+         }
+selectpl($handle);  #        /* select the Plotter for use */
+if (openpl() < 0)    #      /* open Plotter */
+{
+    die "Couldn't open Plotter";
+}
+space(0, 0, 299, 149);   #  /* specify user coordinate system */
+parampl ("BITMAPSIZE", "300x150");
+# Note a bug in XFree86 requires that the bitmap spec comes after newpl().
+linewidth (8);           #   /* width of lines in user coordinates */
+filltype (1);            #   /* objects will be filled */
+bgcolorname ("saddle brown"); # /* background color for the window */
+for ($j = 0; $j < 300; $j++)
+{
+    erase ();              #   /* erase window */
+    pencolorname ("red");  # /* choose red pen, with cyan filling */
+    fillcolorname ("cyan");
+    ellipse ($i, 75, 35, 50, $i); # /* draw an ellipse */
+    colorname ("black");   # /* choose black pen, with black filling */
+    circle ($i, 75, 12);   #  /* draw a circle [the pupil] */
+    $i = ($i + 2) % 300;   #    /* shift rightwards */
+}
+if (closepl () < 0)        #     /* close Plotter */
+{
+    die "Couldn't close Plotter";
+}
+selectpl (0);               #  /* select default Plotter */
+if (deletepl ($handle) < 0) # /* delete Plotter we used */
+{
+    die "Couldn't delete Plotter";
+}
+
+1; #OK

@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+use Graphics::Libplot ':ALL';
+
+# type of plotting device
+$device = 'X';
+if (@ARGV) {
+    $device = $ARGV[0];	
+    die "Uknown device: $ARGV[0]" unless $ARGV[0] =~ /^ps|X|fig$/;
+}
+
+{   # environment for local variables
+
+my $SIZE=100;
+my ($i,$f,$s,$sf);
+parampl ("BITMAPSIZE", "700x700");
+$handle = newpl($device, stdin, stdout, stderr); # open xwindow display
+selectpl($handle); 
+openpl();
+fspace(-$SIZE,-$SIZE, $SIZE, $SIZE); # specify user coord system 
+pencolorname ("blue");
+fontname("HersheySerif");
+$s = 10;
+$f = 10;
+$sf = 1- .0012;
+for($i=1;$i<3000;$i++){
+    fscale($sf,$sf);
+    fbox(60+$s*sin($i/$f),
+	 60+$s*sin($i/$f),
+	 75-$s*cos($i/$f),
+	 75-$s*cos($i/$f));
+    frotate(1);
+}
+
+}
+closepl();
+selectpl(0);
+deletepl($handle);
+
+1; #OK
+
