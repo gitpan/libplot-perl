@@ -1,5 +1,8 @@
 Revision history for Perl extension Libplot.
 
+2.1.6.2  Wed, 18 Nov 1998 01:24:20 -0700
+	- Spruced up documentation a bit.
+
 0.01  Thu Oct 22 20:01:58 1998
 	- original version; created by h2xs 1.18
 

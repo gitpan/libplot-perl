@@ -1,0 +1,1 @@
+shlibs:Depends=libc6 (>= 2.0.7u), plotutils (>= 2.1.4-1), xlib6g (>= 3.3-5)

@@ -1,3 +1,9 @@
+libplot-perl (2.1.6.2-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- John Lapeyre <lapeyre@physics.arizona.edu>  Wed, 18 Nov 1998 01:24:20 -0700
+	
 libplot-perl (2.1.6.1-1) unstable; urgency=low
 
   * Initial Release.
